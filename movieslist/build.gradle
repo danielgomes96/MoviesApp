@@ -1,0 +1,20 @@
+import com.globo.gradleconfig.Libs
+import com.globo.gradleconfig.Versions
+
+apply plugin: 'com.android.dynamic-feature'
+
+android {
+    compileSdkVersion Versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+        versionCode Versions.defaultVersionCode
+        versionName Versions.defaultVersionName
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':app')
+}
