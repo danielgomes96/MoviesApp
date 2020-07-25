@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/commons" />
             <option value="$PROJECT_DIR$/movieslist" />
+            <option value="$PROJECT_DIR$/navigator" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
