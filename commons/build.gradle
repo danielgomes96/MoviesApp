@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -30,4 +34,6 @@ dependencies {
     api Libs.Core.appcompat
     api Libs.Core.core_ktx
     api Libs.UI.constraintlayout
+    implementation Libs.Core.kotlinx_coroutines_android
+    implementation Libs.DI.koin_android
 }

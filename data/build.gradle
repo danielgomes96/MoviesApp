@@ -1,16 +1,19 @@
+import com.globo.gradleconfig.Libs
+import com.globo.gradleconfig.Versions
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
 
+android {
+    compileSdkVersion Versions.compileSdkVersion
+    buildToolsVersion Versions.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdkVersion
+        versionCode Versions.defaultVersionCode
+        versionName Versions.defaultVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -23,14 +26,20 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.3.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(':domain')
+    implementation project(':commons')
+    implementation Libs.Core.kotlinx_coroutines_android
+    implementation Libs.DI.koin_android
+    implementation Libs.Data.retrofit
+    implementation Libs.Data.converter_gson
+    implementation Libs.Data.okhttp
+    implementation Libs.Data.logging_interceptor
 }

@@ -13,9 +13,16 @@ android {
         versionCode Versions.defaultVersionCode
         versionName Versions.defaultVersionName
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app')
+    implementation Libs.Core.kotlinx_coroutines_android
+    implementation Libs.DI.koin_android
+    implementation Libs.DI.koin_androidx_viewmodel
 }

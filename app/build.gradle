@@ -23,11 +23,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     dynamicFeatures = [":movieslist"]
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':commons')
+    api project(':data')
     api project(':navigator')
+    api project(':domain')
+    api project(':commons')
+    implementation Libs.DI.koin_android
+    implementation Libs.Core.multidex
 }
