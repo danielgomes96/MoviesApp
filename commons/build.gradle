@@ -36,4 +36,5 @@ dependencies {
     api Libs.UI.constraintlayout
     implementation Libs.Core.kotlinx_coroutines_android
     implementation Libs.DI.koin_android
+    implementation Libs.UI.glide
 }

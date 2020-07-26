@@ -25,4 +25,5 @@ dependencies {
     implementation Libs.Core.kotlinx_coroutines_android
     implementation Libs.DI.koin_android
     implementation Libs.DI.koin_androidx_viewmodel
+    implementation Libs.UI.cardview
 }

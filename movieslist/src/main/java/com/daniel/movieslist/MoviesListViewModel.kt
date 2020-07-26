@@ -1,6 +1,7 @@
 package com.daniel.movieslist
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.daniel.common.BaseViewModel
 import com.daniel.domain.entity.Movie
@@ -16,16 +17,32 @@ class MoviesListViewModel(
 
     var moviesListLv: MutableLiveData<List<Movie>> = MutableLiveData()
 
+    private val _viewStateLv: MutableLiveData<ViewState> = MutableLiveData<ViewState>()
+    val viewStateLv: LiveData<ViewState>
+        get() = _viewStateLv
+
+    @ExperimentalCoroutinesApi
+    fun onLoadScreen() {
+        val shouldShowLoading = _viewStateLv.value in arrayOf(ViewState.IDLE, ViewState.ERROR)
+        if (shouldShowLoading) _viewStateLv.value = ViewState.LOADING
+        getTopRatedMovies()
+    }
+
     @ExperimentalCoroutinesApi
     fun getTopRatedMovies() {
         launch {
             getTopRatedMoviesUseCase.execute()
                 .catch {
-                    Log.e("errou!", "errou!")
+                    Log.e("Error!", "Error!")
                 }
                 .collect {
+                    _viewStateLv.postValue(ViewState.LIST)
                     moviesListLv.postValue(it)
                 }
         }
+    }
+
+    enum class ViewState {
+        IDLE, LOADING, ERROR, LIST
     }
 }

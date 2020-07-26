@@ -44,8 +44,17 @@ object Libs {
     }
 
     object UI {
+        const val cardview: String = "androidx.cardview:cardview:" + Versions.cardview
+
         const val constraintlayout: String = "androidx.constraintlayout:constraintlayout:" +
                 Versions.constraintlayout
+
+        const val glide: String = "com.github.bumptech.glide:glide:" + Versions.glide
+
+        const val glide_annotations: String =
+            "com.github.bumptech.glide:annotations:" + Versions.glide
+
+        const val glide_compiler: String = "com.github.bumptech.glide:compiler:" + Versions.glide
     }
 
     object Data {

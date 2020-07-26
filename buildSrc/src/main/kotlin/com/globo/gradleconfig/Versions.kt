@@ -16,6 +16,7 @@ object Versions {
     const val constraintlayout: String = "2.0.0-alpha2"
     const val converter_gson: String = "2.6.0"
     const val core_ktx: String = "1.2.0"
+    const val glide: String = "4.10.0"
     const val koin: String = "2.0.0-GA"
     const val kotlin: String = "1.3.71"
     const val kotlinx_coroutines: String = "1.3.3"
