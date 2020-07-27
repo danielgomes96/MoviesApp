@@ -4,5 +4,5 @@ import com.daniel.domain.entity.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface GetTopRatedMoviesUseCase {
-    fun execute(): Flow<List<Movie>>
+    fun execute(page: Int, language: String): Flow<List<Movie>>
 }

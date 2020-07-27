@@ -10,9 +10,9 @@ class MoviesListRepositoryImpl(
     private val moviesMapper: MoviesMapper
 ) : MoviesListRepository {
 
-    override fun getTopRatedMovies() = flow {
+    override fun getTopRatedMovies(page: Int, language: String) = flow {
         emit(
-            moviesMapper.transform(moviesService.getTopRated(1))
+            moviesMapper.transform(moviesService.getTopRated(page, language))
         )
     }
 }

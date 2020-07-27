@@ -6,5 +6,6 @@ class GetTopRatedMoviesUseCaseImpl(
     private val moviesListRepository: MoviesListRepository
 ) : GetTopRatedMoviesUseCase {
 
-    override fun execute() = moviesListRepository.getTopRatedMovies()
+    override fun execute(page: Int, language: String) =
+        moviesListRepository.getTopRatedMovies(page, language)
 }

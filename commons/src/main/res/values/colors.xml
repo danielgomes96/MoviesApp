@@ -4,4 +4,5 @@
     <color name="black_light">#202020</color>
     <color name="black_transparent">#CB000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="yellow">#FF9800</color>
 </resources>

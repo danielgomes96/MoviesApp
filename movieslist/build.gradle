@@ -22,6 +22,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app')
+    implementation project(':widget')
     implementation Libs.Core.kotlinx_coroutines_android
     implementation Libs.DI.koin_android
     implementation Libs.DI.koin_androidx_viewmodel

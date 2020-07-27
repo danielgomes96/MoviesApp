@@ -1,2 +1,2 @@
-include ':app', ':commons', ':movieslist', ':navigator', ':data', ':domain'
+include ':app', ':commons', ':movieslist', ':navigator', ':data', ':domain', ':widget'
 rootProject.name='MoviesApp'

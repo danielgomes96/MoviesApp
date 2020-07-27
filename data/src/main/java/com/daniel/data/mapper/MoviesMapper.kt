@@ -6,7 +6,14 @@ import com.daniel.domain.entity.Movie
 class MoviesMapper : BaseMapper<DTOMoviesList, List<Movie>>() {
     override fun transform(entity: DTOMoviesList): List<Movie> {
         return entity.moviesList.map {
-            Movie(it.title, it.description, it.imageUrl, it.voteAverage)
+            Movie(
+                it.title,
+                it.description,
+                it.imageUrl,
+                it.voteAverage,
+                it.isAdult,
+                it.releaseDate
+            )
         }
     }
 }

@@ -22,16 +22,16 @@ class MoviesListViewModel(
         get() = _viewStateLv
 
     @ExperimentalCoroutinesApi
-    fun onLoadScreen() {
+    fun onLoadScreen(page: Int, language: String) {
         val shouldShowLoading = _viewStateLv.value in arrayOf(ViewState.IDLE, ViewState.ERROR)
         if (shouldShowLoading) _viewStateLv.value = ViewState.LOADING
-        getTopRatedMovies()
+        getTopRatedMovies(page, language)
     }
 
     @ExperimentalCoroutinesApi
-    fun getTopRatedMovies() {
+    fun getTopRatedMovies(page: Int, language: String) {
         launch {
-            getTopRatedMoviesUseCase.execute()
+            getTopRatedMoviesUseCase.execute(page, language)
                 .catch {
                     Log.e("Error!", "Error!")
                 }
@@ -43,6 +43,6 @@ class MoviesListViewModel(
     }
 
     enum class ViewState {
-        IDLE, LOADING, ERROR, LIST
+        IDLE, LOADING, ERROR, EMPTY, LIST
     }
 }

@@ -1,6 +1,7 @@
 package com.daniel.data.dto
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class DTOMovie(
     @SerializedName("id")
@@ -16,5 +17,9 @@ data class DTOMovie(
     @SerializedName("vote_average")
     val voteAverage: Float,
     @SerializedName("popularity")
-    val popularity: Float
+    val popularity: Float,
+    @SerializedName("adult")
+    val isAdult: Boolean,
+    @SerializedName("release_date")
+    val releaseDate: Date
 )

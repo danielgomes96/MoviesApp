@@ -15,6 +15,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visible="true" />
 
+    <com.daniel.widget.ErrorView
+        android:id="@+id/activity_movies_list_error_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_movies_list_rv_movies"
         android:layout_width="match_parent"

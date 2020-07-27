@@ -10,17 +10,21 @@ import com.daniel.common.extension.bind
 import com.daniel.common.extension.gone
 import com.daniel.common.extension.visible
 import com.daniel.movieslist.di.moviesListModule
+import com.daniel.widget.ErrorView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import androidx.core.os.LocaleListCompat
 
 class MoviesListActivity : AppCompatActivity() {
 
     private val progressBar by bind<ProgressBar>(R.id.activity_movies_list_loading)
     private val rvMovies by bind<RecyclerView>(R.id.activity_movies_list_rv_movies)
+    private val errorView by bind<ErrorView>(R.id.activity_movies_list_error_view)
 
     private val viewModel by viewModel<MoviesListViewModel>()
     private val moviesListAdapter = MoviesListAdapter(this)
+    private val currentLanguage = LocaleListCompat.getDefault()[0].toLanguageTag()
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,13 +33,13 @@ class MoviesListActivity : AppCompatActivity() {
         loadKoinModules(moviesListModule)
         setupList()
         setupObservers()
-        viewModel.getTopRatedMovies()
+        viewModel.getTopRatedMovies(1, currentLanguage)
     }
 
     @ExperimentalCoroutinesApi
     override fun onResume() {
         super.onResume()
-        viewModel.onLoadScreen()
+        viewModel.onLoadScreen(1, currentLanguage)
     }
 
     private fun setupList() {
@@ -54,6 +58,8 @@ class MoviesListActivity : AppCompatActivity() {
             @Suppress("NON_EXHAUSTIVE_WHEN")
             when (viewState) {
                 MoviesListViewModel.ViewState.LOADING -> handleLoadingState()
+                MoviesListViewModel.ViewState.ERROR -> handleErrorState()
+                MoviesListViewModel.ViewState.EMPTY -> handleEmptyState()
                 MoviesListViewModel.ViewState.LIST -> handleListState()
             }
         })
@@ -62,6 +68,16 @@ class MoviesListActivity : AppCompatActivity() {
     private fun handleLoadingState() {
         progressBar.visible()
         rvMovies.gone()
+    }
+
+    private fun handleEmptyState() {
+        //TODO: Create empty view
+    }
+
+    private fun handleErrorState() {
+        progressBar.gone()
+        rvMovies.gone()
+        errorView.visible()
     }
 
     private fun handleListState() {
