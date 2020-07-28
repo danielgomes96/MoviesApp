@@ -5,7 +5,7 @@ import java.util.*
 
 data class DTOMovie(
     @SerializedName("id")
-    val id: Double,
+    val id: Int,
     @SerializedName("original_language")
     val originalTitle: String,
     @SerializedName("title")

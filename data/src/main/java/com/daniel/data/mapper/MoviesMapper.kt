@@ -7,6 +7,7 @@ class MoviesMapper : BaseMapper<DTOMoviesList, List<Movie>>() {
     override fun transform(entity: DTOMoviesList): List<Movie> {
         return entity.moviesList.map {
             Movie(
+                it.id,
                 it.title,
                 it.description,
                 it.imageUrl,

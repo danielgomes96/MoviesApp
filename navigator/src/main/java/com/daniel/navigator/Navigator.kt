@@ -11,6 +11,11 @@ object MoviesListNavigator : Navigation {
     override fun getIntent(): Intent? = MOVIES_LIST.loadIntentOrNull()
 }
 
+object MovieDetailsNavigator : Navigation {
+    private const val MOVIE_DETAILS = "com.daniel.moviedetails.MovieDetailsActivity"
+    override fun getIntent(): Intent? = MOVIE_DETAILS.loadIntentOrNull()
+}
+
 private const val PACKAGE_NAME = "com.daniel.moviesapp"
 
 private fun intentTo(className: String): Intent =

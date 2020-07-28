@@ -15,6 +15,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import androidx.core.os.LocaleListCompat
+import com.daniel.common.Consts
+import com.daniel.domain.entity.Movie
+import com.daniel.navigator.MovieDetailsNavigator
 
 class MoviesListActivity : AppCompatActivity() {
 
@@ -23,7 +26,7 @@ class MoviesListActivity : AppCompatActivity() {
     private val errorView by bind<ErrorView>(R.id.activity_movies_list_error_view)
 
     private val viewModel by viewModel<MoviesListViewModel>()
-    private val moviesListAdapter = MoviesListAdapter(this)
+    private val moviesListAdapter = MoviesListAdapter(this, ::onMovieClicked)
     private val currentLanguage = LocaleListCompat.getDefault()[0].toLanguageTag()
 
     @ExperimentalCoroutinesApi
@@ -83,5 +86,10 @@ class MoviesListActivity : AppCompatActivity() {
     private fun handleListState() {
         progressBar.gone()
         rvMovies.visible()
+    }
+
+    private fun onMovieClicked(movie: Movie) {
+        val intent = MovieDetailsNavigator.getIntent()?.putExtra(Consts.KEY_MOVIE, movie)
+        startActivity(intent)
     }
 }
