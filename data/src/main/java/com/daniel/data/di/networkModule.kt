@@ -1,7 +1,9 @@
 package com.daniel.data.di
 
+import com.daniel.data.BuildConfig
 import com.daniel.data.network.MoviesService
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,13 +19,9 @@ val networkModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .client(
                 OkHttpClient.Builder()
-                    .addInterceptor { chain ->
-                        val request = chain.request().newBuilder()
-                        val originalHttpUrl = chain.request().url()
-                        val url = originalHttpUrl.newBuilder().addQueryParameter(KEY_API, API_KEY).build()
-                        request.url(url)
-                        return@addInterceptor chain.proceed(request.build())
-                    }
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        if (BuildConfig.DEBUG) level = HttpLoggingInterceptor.Level.BODY
+                    })
                     .build()
             )
             .build()

@@ -1,4 +1,4 @@
-import com.globo.gradleconfig.*
+import com.daniel.gradleconfig.*
 
 apply plugin: 'com.android.application'
 

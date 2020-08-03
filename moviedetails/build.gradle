@@ -1,4 +1,4 @@
-import com.globo.gradleconfig.Versions
+import com.daniel.gradleconfig.Versions
 
 apply plugin: 'com.android.dynamic-feature'
 apply plugin: 'kotlin-android'

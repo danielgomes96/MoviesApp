@@ -1,4 +1,4 @@
-package com.globo.gradleconfig
+package com.daniel.gradleconfig
 
 object Versions {
 
